@@ -1,5 +1,6 @@
-const tamanhoPalavra = (palavra: string): string => {
-  return `Olá ${palavra}`;
-};
+const symbolA: symbol = Symbol("Will");
 
-console.log(tamanhoPalavra("Willamy"));
+const symbolB: symbol = Symbol("Will");
+
+console.log(symbolA == symbolB);
+console.log(symbolA === symbolB);

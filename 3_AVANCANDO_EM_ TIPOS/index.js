@@ -1,5 +1,5 @@
 "use strict";
-const tamanhoPalavra = (palavra) => {
-    return `Olá ${palavra}`;
-};
-console.log(tamanhoPalavra("Willamy"));
+const symbolA = Symbol("Will");
+const symbolB = Symbol("Will");
+console.log(symbolA == symbolB);
+console.log(symbolA === symbolB);
