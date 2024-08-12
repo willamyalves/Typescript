@@ -1,33 +1,44 @@
-// Components
-import SecondComponent from "./components/SecondComponent";
-import Destructuring from "./components/Destructuring";
-
 // React
-import { useState, ChangeEvent } from "react";
+import { useState, createContext } from "react";
+
+// Components
+import Destructuring, { Category } from "./components/Destructuring";
+
+// Context
+import Context from "./components/Context.tsx";
 
 // CSS
 import "./App.css";
 
-function App() {
-  const [text, setText] = useState<string | null>(null);
+interface IMyContext {
+  language: string;
+  framework: string;
+  projects: number;
+}
 
-  const handleEvent = (e: ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value);
+export const MyContext = createContext<IMyContext | null>(null);
+
+function App() {
+  const myContext: IMyContext = {
+    language: "Javascript",
+    framework: "Express",
+    projects: 5,
   };
 
   return (
-    <div className="App">
-      <h1>Typescript com React!</h1>
-      <SecondComponent name={"Segundo"} />
-      <Destructuring
-        title="Um título qualquer"
-        content="Algum conteúdo"
-        commentQtd={15}
-        tags={["JS, TS, Python"]}
-      />
-      <p>O texto é: {text}</p>
-      <input type="text" onChange={handleEvent} />
-    </div>
+    <MyContext.Provider value={myContext}>
+      <div className="App">
+        <h1>Typescript com React!</h1>
+        <Destructuring
+          title="teste"
+          content="teste"
+          commentQtd={5}
+          tags={["JS"]}
+          category={Category.JS}
+        />
+        <Context />
+      </div>
+    </MyContext.Provider>
   );
 }
 
